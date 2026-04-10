@@ -114,30 +114,48 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Custom Scrollbar / Progress -->
-        <div class="max-w-md mx-auto mt-10 px-4">
-          <div class="h-[4px] w-full bg-white/20 rounded-full overflow-hidden relative">
-            <div id="progress-bar" class="absolute h-full bg-white transition-all duration-150 ease-out" style="width: 25%; left: 0%;"></div>
+        <!-- Apple-style Pagination Dots -->
+        <div class="flex justify-center items-center mt-12 gap-4">
+          <div class="bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-full flex items-center gap-3">
+            <div class="dot w-2 h-2 rounded-full bg-white/40 transition-all duration-300" data-index="0"></div>
+            <div class="dot w-2 h-2 rounded-full bg-white/40 transition-all duration-300" data-index="1"></div>
+            <div class="dot w-2 h-2 rounded-full bg-white/40 transition-all duration-300" data-index="2"></div>
+            <div class="dot w-2 h-2 rounded-full bg-white/40 transition-all duration-300" data-index="3"></div>
           </div>
+          <button class="bg-white/10 backdrop-blur-md p-2.5 rounded-full hover:bg-white/20 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+            </svg>
+          </button>
         </div>
       </div>
     </section>
 
     <script>
       const slider = document.getElementById('slider');
-      const progressBar = document.getElementById('progress-bar');
+      const dots = document.querySelectorAll('.dot');
 
-      if (slider && progressBar) {
-        slider.addEventListener('scroll', () => {
-          const maxScroll = slider.scrollWidth - slider.clientWidth;
-          const scrollPercentage = (slider.scrollLeft / maxScroll) * 100;
+      if (slider && dots.length > 0) {
+        const updateDots = () => {
+          const scrollLeft = slider.scrollLeft;
+          const width = slider.offsetWidth;
+          // Calculamos el índice basado en el scroll (considerando el padding del contenedor)
+          const index = Math.round(scrollLeft / (width * 0.75)); // 0.75 por el ancho de los slides (70-85vw)
           
-          // Ajustamos la posición de la barra indicadora (que ocupa un 25% del total al ser 4 fotos)
-          const indicatorWidth = 25; // %
-          const leftPosition = (scrollPercentage * (100 - indicatorWidth)) / 100;
-          
-          progressBar.style.left = `${leftPosition}%`;
-        });
+          dots.forEach((dot, i) => {
+            if (i === index) {
+              dot.classList.add('w-6', 'bg-white');
+              dot.classList.remove('w-2', 'bg-white/40');
+            } else {
+              dot.classList.add('w-2', 'bg-white/40');
+              dot.classList.remove('w-6', 'bg-white');
+            }
+          });
+        };
+
+        slider.addEventListener('scroll', updateDots);
+        // Inicializar
+        updateDots();
       }
     </script>
 

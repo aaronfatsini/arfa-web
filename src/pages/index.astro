@@ -115,9 +115,9 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Custom Scrollbar / Progress -->
-        <div class="max-w-xs mx-auto mt-4">
-          <div class="h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
-            <div id="progress-bar" class="h-full bg-white w-0 transition-all duration-300 ease-out"></div>
+        <div class="max-w-md mx-auto mt-10 px-4">
+          <div class="h-[4px] w-full bg-white/20 rounded-full overflow-hidden relative">
+            <div id="progress-bar" class="absolute h-full bg-white transition-all duration-150 ease-out" style="width: 25%; left: 0%;"></div>
           </div>
         </div>
       </div>
@@ -129,8 +129,14 @@ import Layout from '../layouts/Layout.astro';
 
       if (slider && progressBar) {
         slider.addEventListener('scroll', () => {
-          const scrollPercentage = (slider.scrollLeft / (slider.scrollWidth - slider.clientWidth)) * 100;
-          progressBar.style.width = `${scrollPercentage}%`;
+          const maxScroll = slider.scrollWidth - slider.clientWidth;
+          const scrollPercentage = (slider.scrollLeft / maxScroll) * 100;
+          
+          // Ajustamos la posición de la barra indicadora (que ocupa un 25% del total al ser 4 fotos)
+          const indicatorWidth = 25; // %
+          const leftPosition = (scrollPercentage * (100 - indicatorWidth)) / 100;
+          
+          progressBar.style.left = `${leftPosition}%`;
         });
       }
     </script>

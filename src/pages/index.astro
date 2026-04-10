@@ -6,20 +6,26 @@ import Layout from '../layouts/Layout.astro';
 	<main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 		
     <!-- Hero Section -->
-    <header class="min-h-screen flex flex-col justify-center items-center text-center py-20">
-      <div class="animate-fade-in">
-        <h2 class="text-sm uppercase tracking-widest text-gray-400 mb-4">ARFA STUDIOS</h2>
-        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
+    <header class="relative min-h-screen flex flex-col justify-center items-center text-center py-20 overflow-hidden">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=2000" alt="Background" class="object-cover w-full h-full opacity-40 scale-105 animate-slow-zoom" />
+        <div class="absolute inset-0 bg-gradient-to-b from-[#121212]/60 via-[#121212]/80 to-[#121212]"></div>
+      </div>
+
+      <div class="relative z-10 animate-fade-in px-4">
+        <h2 class="text-sm uppercase tracking-[0.3em] text-white/60 mb-6 font-semibold">ARFA STUDIOS</h2>
+        <h1 class="text-5xl md:text-8xl font-bold tracking-tight mb-8 bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent leading-tight">
           Vendemos tu inmueble <br /> antes de que lo publiquen.
         </h1>
-        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+        <p class="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
           Fotografía de alta gama, tomas con dron y vídeo cinematográfico para propiedades que no aceptan menos que la excelencia.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#contacto" class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition-all duration-300 transform hover:scale-105">
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+          <a href="#contacto" class="bg-white text-black px-10 py-4 rounded-full font-bold hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-white/5">
             Reservar ahora
           </a>
-          <a href="#servicios" class="border border-white/20 px-8 py-4 rounded-full font-semibold hover:bg-white/5 transition-all duration-300">
+          <a href="#servicios" class="bg-white/10 backdrop-blur-md border border-white/20 px-10 py-4 rounded-full font-bold hover:bg-white/20 transition-all duration-300">
             Ver servicios
           </a>
         </div>
@@ -67,13 +73,13 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
         <div class="group overflow-hidden rounded-3xl bg-gray-900 aspect-[4/5] relative lg:row-span-2">
-          <img src="https://images.unsplash.com/photo-1600607687940-4e524cb35d3a?auto=format&fit=crop&q=80&w=1000" alt="Vista aérea" class="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1000" alt="Vista aérea" class="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
             <p class="text-sm font-medium tracking-wide">Vistas Aéreas - Costa Dorada</p>
           </div>
         </div>
         <div class="group overflow-hidden rounded-3xl bg-gray-900 aspect-square relative">
-          <img src="https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?auto=format&fit=crop&q=80&w=1000" alt="Cocina de diseño" class="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1556912177-c54030639a49?auto=format&fit=crop&q=80&w=1000" alt="Cocina de diseño" class="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
             <p class="text-sm font-medium tracking-wide">Espacios Modernos</p>
           </div>
@@ -110,7 +116,14 @@ import Layout from '../layouts/Layout.astro';
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes slow-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
   .animate-fade-in {
     animation: fade-in 1.2s ease-out forwards;
+  }
+  .animate-slow-zoom {
+    animation: slow-zoom 20s ease-in-out infinite alternate;
   }
 </style>

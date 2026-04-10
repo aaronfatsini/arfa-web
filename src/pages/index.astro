@@ -62,36 +62,88 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
-    <!-- Visual Portfolio -->
-    <section id="portfolio" class="py-24">
-      <h2 class="text-3xl font-bold mb-12 text-center">Nuestro Trabajo</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="group overflow-hidden rounded-3xl bg-gray-900 aspect-[4/3] relative">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000" alt="Interior lujoso" class="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <p class="text-sm font-medium tracking-wide">Villa Minimalista - Deltebre</p>
+    <!-- Visual Portfolio (Slider estilo Apple) -->
+    <section id="portfolio" class="py-24 overflow-hidden">
+      <div class="max-w-screen-xl mx-auto px-4 mb-12">
+        <h2 class="text-3xl md:text-5xl font-bold">Nuestro Trabajo</h2>
+        <p class="text-gray-400 mt-4 font-light">Explora la calidad de nuestras producciones.</p>
+      </div>
+
+      <div class="relative group">
+        <!-- Slider Container -->
+        <div id="slider" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 px-[10%] pb-10 cursor-grab active:cursor-grabbing">
+          
+          <!-- Slide 1 -->
+          <div class="flex-none w-[85vw] md:w-[70vw] snap-center">
+            <div class="relative aspect-video rounded-[2rem] overflow-hidden bg-gray-900 shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=90&w=1600" class="object-cover w-full h-full" alt="Interior" />
+              <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/60 to-transparent w-full">
+                <p class="text-xl font-medium">Interiores que enamoran</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="flex-none w-[85vw] md:w-[70vw] snap-center">
+            <div class="relative aspect-video rounded-[2rem] overflow-hidden bg-gray-900 shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=90&w=1600" class="object-cover w-full h-full" alt="Vista Aérea" />
+              <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/60 to-transparent w-full">
+                <p class="text-xl font-medium">Vistas aéreas espectaculares</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="flex-none w-[85vw] md:w-[70vw] snap-center">
+            <div class="relative aspect-video rounded-[2rem] overflow-hidden bg-gray-900 shadow-2xl">
+              <img src="https://images.pexels.com/photos/2724748/pexels-photo-2724748.jpeg?auto=compress&cs=tinysrgb&w=1600" class="object-cover w-full h-full" alt="Cocina" />
+              <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/60 to-transparent w-full">
+                <p class="text-xl font-medium">Diseño y detalle</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="flex-none w-[85vw] md:w-[70vw] snap-center">
+            <div class="relative aspect-video rounded-[2rem] overflow-hidden bg-gray-900 shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=90&w=1600" class="object-cover w-full h-full" alt="Residencia" />
+              <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/60 to-transparent w-full">
+                <p class="text-xl font-medium">Exclusividad en cada toma</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="group overflow-hidden rounded-3xl bg-gray-900 aspect-[4/5] relative lg:row-span-2">
-          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1000" alt="Vista aérea" class="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <p class="text-sm font-medium tracking-wide">Vistas Aéreas - Costa Dorada</p>
-          </div>
-        </div>
-        <div class="group overflow-hidden rounded-3xl bg-gray-900 aspect-square relative">
-          <img src="https://images.pexels.com/photos/2724748/pexels-photo-2724748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Cocina de diseño" class="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <p class="text-sm font-medium tracking-wide">Espacios Modernos</p>
-          </div>
-        </div>
-        <div class="group overflow-hidden rounded-3xl bg-gray-900 aspect-video relative lg:col-span-2">
-          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1000" alt="Salón amplio" class="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <p class="text-sm font-medium tracking-wide">Residencias de Lujo - Tarragona</p>
+
+        <!-- Custom Scrollbar / Progress -->
+        <div class="max-w-xs mx-auto mt-4">
+          <div class="h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-white w-0 transition-all duration-300 ease-out"></div>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      const slider = document.getElementById('slider');
+      const progressBar = document.getElementById('progress-bar');
+
+      if (slider && progressBar) {
+        slider.addEventListener('scroll', () => {
+          const scrollPercentage = (slider.scrollLeft / (slider.scrollWidth - slider.clientWidth)) * 100;
+          progressBar.style.width = `${scrollPercentage}%`;
+        });
+      }
+    </script>
+
+    <style>
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
 
     <!-- Contact CTA -->
     <section id="contacto" class="py-32 text-center">

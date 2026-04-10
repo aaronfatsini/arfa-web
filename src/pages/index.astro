@@ -71,7 +71,7 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="relative group">
         <!-- Slider Container -->
-        <div id="slider" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 px-[10%] pb-10 cursor-grab active:cursor-grabbing">
+        <div id="slider" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 px-[10%] pb-10 cursor-grab active:cursor-grabbing scroll-smooth">
           
           <!-- Slide 1 -->
           <div class="flex-none w-[85vw] md:w-[70vw] snap-center">
@@ -138,9 +138,13 @@ import Layout from '../layouts/Layout.astro';
       if (slider && dots.length > 0) {
         const updateDots = () => {
           const scrollLeft = slider.scrollLeft;
-          const width = slider.offsetWidth;
-          // Calculamos el índice basado en el scroll (considerando el padding del contenedor)
-          const index = Math.round(scrollLeft / (width * 0.75)); // 0.75 por el ancho de los slides (70-85vw)
+          const containerWidth = slider.offsetWidth;
+          const scrollWidth = slider.scrollWidth - containerWidth;
+          
+          // Calculamos el progreso total del scroll de 0 a 1
+          const progress = scrollLeft / scrollWidth;
+          // Lo convertimos al índice de los puntos (0 a 3 en este caso)
+          const index = Math.round(progress * (dots.length - 1));
           
           dots.forEach((dot, i) => {
             if (i === index) {
@@ -153,8 +157,33 @@ import Layout from '../layouts/Layout.astro';
           });
         };
 
+        // Soporte para scroll con ratón (drag)
+        let isDown = false;
+        letstartX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+          isDown = true;
+          slider.classList.add('active');
+          startX = e.pageX - slider.offsetLeft;
+          scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+          isDown = false;
+        });
+        slider.addEventListener('mouseup', () => {
+          isDown = false;
+        });
+        slider.addEventListener('mousemove', (e) => {
+          if(!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - slider.offsetLeft;
+          const walk = (x - startX) * 2;
+          slider.scrollLeft = scrollLeft - walk;
+        });
+
         slider.addEventListener('scroll', updateDots);
-        // Inicializar
+        window.addEventListener('resize', updateDots);
         updateDots();
       }
     </script>
